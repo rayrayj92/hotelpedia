@@ -5,10 +5,11 @@
     <title>호텔피디아</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href='{{ url_for("static", filename="style.css") }}' rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light hotelpedia-nav">
@@ -26,11 +27,299 @@
 
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">로그인</button>
+            <a class="login-page-link" href="#">로그인하러 가자</a>
         </form>
     </div>
 </nav>
 
+<div class="banner">
+    <div class="banner-video-wrapper">
+        <video autoplay muted loop class="banner-video">
+            <source src="/static/banner.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="banner-text">
+        <p>호캉스 여기 다 모였다!</p>
+        <p>비행기 안타도 여기가 외국</p>
+    </div>
+</div>
+<section class="search">
+    <div class="search-conditions">
+        <select class="state custom-select">
+            <option>서울</option>
+            <option>부산</option>
+            <option>제주</option>
+        </select>
+        <select class="city custom-select">
+            <option>강남/역삼/삼성/신사/청담</option>
+            <option>서초/교대</option>
+        </select>
+        <button class="btn btn-outline-light search-btn">검색</button>
+    </div>
+</section>
+<section class="weekly-best">
+    <div class="weekly-best-recommendation">
+        <h3>이번주 TOP 3</h3>
+    </div>
+    <div class="weekly-best-card-wrapper">
+        <div class="content-card hotel-info">
+            <div class="hotel-img">
+                <img src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2018/12/13/5c11a683a494b.jpg" alt="">
+            </div>
+            <div class="hotel-info-grid">
+                <div class="hotel-name"><span>포시즌스 호텔</span></div>
+                <div class="hotel-rate"><p>10.0점</p></div>
+                <div class="hotel-location">종로구 | 광화문역 부근</div>
+                <div class="hotel-booking">
+                    <a href="#">예약하기</a>
+                </div>
+                <span class="hotel-money">385,000원</span>
+            </div>
+        </div>
+        <div class="content-card hotel-info">
+            <div class="hotel-img">
+                <img src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2020/08/14/5f3604b0d9ada.jpg" alt="">
+            </div>
+            <div class="hotel-info-grid">
+                <div class="hotel-name"><span>목시 바이 메리어트 서울 인사동</span></div>
+                <div class="hotel-rate"><p>9.6점</p></div>
+                <div class="hotel-location">종로구 | 종로3가역 도보 1분</div>
+                <div class="hotel-booking">
+                    <a href="#">예약하기</a>
+                </div>
+                <span class="hotel-money">89,700원</span>
+            </div>
+        </div>
+        <div class="content-card hotel-info">
+            <div class="hotel-img">
+                <img src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2020/01/10/5e1816bd8972f.jpg" alt="">
+            </div>
+            <div class="hotel-info-grid">
+                <div class="hotel-name"><span>나인트리 프리미어 호텔 인사동</span></div>
+                <div class="hotel-rate"><p>9.5점</p></div>
+                <div class="hotel-location">종로구 | 안국역 도보 4분</div>
+                <div class="hotel-booking">
+                    <a href="#">예약하기</a>
+                </div>
+                <span class="hotel-money">75,000원</span>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content">
+    <div class="content-card hotel-info">
+        <div class="hotel-img">
+            <img src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2018/12/13/5c11a683a494b.jpg" alt="">
+        </div>
+        <div class="hotel-info-grid">
+            <div class="hotel-name"><span>포시즌스 호텔</span></div>
+            <div class="hotel-rate"><p>10.0점</p></div>
+            <div class="hotel-location">종로구 | 광화문역 부근</div>
+            <div class="hotel-booking">
+                <a href="#">예약하기</a>
+            </div>
+            <span class="hotel-money">385,000원</span>
+        </div>
+    </div>
+    <div class="content-card hotel-info">
+        <div class="hotel-img">
+            <img src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2020/08/14/5f3604b0d9ada.jpg" alt="">
+        </div>
+        <div class="hotel-info-grid">
+            <div class="hotel-name"><span>목시 바이 메리어트 서울 인사동</span></div>
+            <div class="hotel-rate"><p>9.6점</p></div>
+            <div class="hotel-location">종로구 | 종로3가역 도보 1분</div>
+            <div class="hotel-booking">
+                <a href="#">예약하기</a>
+            </div>
+            <span class="hotel-money">89,700원</span>
+        </div>
+    </div>
+    <div class="content-card hotel-info">
+        <div class="hotel-img">
+            <img src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2020/01/10/5e1816bd8972f.jpg" alt="">
+        </div>
+        <div class="hotel-info-grid">
+            <div class="hotel-name"><span>나인트리 프리미어 호텔 인사동</span></div>
+            <div class="hotel-rate"><p>9.5점</p></div>
+            <div class="hotel-location">종로구 | 안국역 도보 4분</div>
+            <div class="hotel-booking">
+                <a href="#">예약하기</a>
+            </div>
+            <span class="hotel-money">75,000원</span>
+        </div>
+    </div>
+    <div class="content-card hotel-info">
+        <div class="hotel-img">
+            <img src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2018/12/13/5c11a683a494b.jpg" alt="">
+        </div>
+        <div class="hotel-info-grid">
+            <div class="hotel-name"><span>포시즌스 호텔</span></div>
+            <div class="hotel-rate"><p>10.0점</p></div>
+            <div class="hotel-location">종로구 | 광화문역 부근</div>
+            <div class="hotel-booking">
+                <a href="#">예약하기</a>
+            </div>
+            <span class="hotel-money">385,000원</span>
+        </div>
+    </div>
+    <div class="content-card hotel-info">
+        <div class="hotel-img">
+            <img src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2020/08/14/5f3604b0d9ada.jpg" alt="">
+        </div>
+        <div class="hotel-info-grid">
+            <div class="hotel-name"><span>목시 바이 메리어트 서울 인사동</span></div>
+            <div class="hotel-rate"><p>9.6점</p></div>
+            <div class="hotel-location">종로구 | 종로3가역 도보 1분</div>
+            <div class="hotel-booking">
+                <a href="#">예약하기</a>
+            </div>
+            <span class="hotel-money">89,700원</span>
+        </div>
+    </div>
+    <div class="content-card hotel-info">
+        <div class="hotel-img">
+            <img src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2020/01/10/5e1816bd8972f.jpg" alt="">
+        </div>
+        <div class="hotel-info-grid">
+            <div class="hotel-name"><span>나인트리 프리미어 호텔 인사동</span></div>
+            <div class="hotel-rate"><p>9.5점</p></div>
+            <div class="hotel-location">종로구 | 안국역 도보 4분</div>
+            <div class="hotel-booking">
+                <a href="#">예약하기</a>
+            </div>
+            <span class="hotel-money">75,000원</span>
+        </div>
+    </div>
+    <div class="content-card hotel-info">
+        <div class="hotel-img">
+            <img src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2018/12/13/5c11a683a494b.jpg" alt="">
+        </div>
+        <div class="hotel-info-grid">
+            <div class="hotel-name"><span>포시즌스 호텔</span></div>
+            <div class="hotel-rate"><p>10.0점</p></div>
+            <div class="hotel-location">종로구 | 광화문역 부근</div>
+            <div class="hotel-booking">
+                <a href="#">예약하기</a>
+            </div>
+            <span class="hotel-money">385,000원</span>
+        </div>
+    </div>
+    <div class="content-card hotel-info">
+        <div class="hotel-img">
+            <img src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2020/08/14/5f3604b0d9ada.jpg" alt="">
+        </div>
+        <div class="hotel-info-grid">
+            <div class="hotel-name"><span>목시 바이 메리어트 서울 인사동</span></div>
+            <div class="hotel-rate"><p>9.6점</p></div>
+            <div class="hotel-location">종로구 | 종로3가역 도보 1분</div>
+            <div class="hotel-booking">
+                <a href="#">예약하기</a>
+            </div>
+            <span class="hotel-money">89,700원</span>
+        </div>
+    </div>
+    <div class="content-card hotel-info">
+        <div class="hotel-img">
+            <img src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2020/01/10/5e1816bd8972f.jpg" alt="">
+        </div>
+        <div class="hotel-info-grid">
+            <div class="hotel-name"><span>나인트리 프리미어 호텔 인사동</span></div>
+            <div class="hotel-rate"><p>9.5점</p></div>
+            <div class="hotel-location">종로구 | 안국역 도보 4분</div>
+            <div class="hotel-booking">
+                <a href="#">예약하기</a>
+            </div>
+            <span class="hotel-money">75,000원</span>
+        </div>
+    </div>
+    <div class="content-card hotel-info">
+        <div class="hotel-img">
+            <img src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2018/12/13/5c11a683a494b.jpg" alt="">
+        </div>
+        <div class="hotel-info-grid">
+            <div class="hotel-name"><span>포시즌스 호텔</span></div>
+            <div class="hotel-rate"><p>10.0점</p></div>
+            <div class="hotel-location">종로구 | 광화문역 부근</div>
+            <div class="hotel-booking">
+                <a href="#">예약하기</a>
+            </div>
+            <span class="hotel-money">385,000원</span>
+        </div>
+    </div>
+    <div class="content-card hotel-info">
+        <div class="hotel-img">
+            <img src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2020/08/14/5f3604b0d9ada.jpg" alt="">
+        </div>
+        <div class="hotel-info-grid">
+            <div class="hotel-name"><span>목시 바이 메리어트 서울 인사동</span></div>
+            <div class="hotel-rate"><p>9.6점</p></div>
+            <div class="hotel-location">종로구 | 종로3가역 도보 1분</div>
+            <div class="hotel-booking">
+                <a href="#">예약하기</a>
+            </div>
+            <span class="hotel-money">89,700원</span>
+        </div>
+    </div>
+    <div class="content-card hotel-info">
+        <div class="hotel-img">
+            <img src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2020/01/10/5e1816bd8972f.jpg" alt="">
+        </div>
+        <div class="hotel-info-grid">
+            <div class="hotel-name"><span>나인트리 프리미어 호텔 인사동</span></div>
+            <div class="hotel-rate"><p>9.5점</p></div>
+            <div class="hotel-location">종로구 | 안국역 도보 4분</div>
+            <div class="hotel-booking">
+                <a href="#">예약하기</a>
+            </div>
+            <span class="hotel-money">75,000원</span>
+        </div>
+    </div>
+    <div class="content-card hotel-info">
+        <div class="hotel-img">
+            <img src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2018/12/13/5c11a683a494b.jpg" alt="">
+        </div>
+        <div class="hotel-info-grid">
+            <div class="hotel-name"><span>포시즌스 호텔</span></div>
+            <div class="hotel-rate"><p>10.0점</p></div>
+            <div class="hotel-location">종로구 | 광화문역 부근</div>
+            <div class="hotel-booking">
+                <a href="#">예약하기</a>
+            </div>
+            <span class="hotel-money">385,000원</span>
+        </div>
+    </div>
+    <div class="content-card hotel-info">
+        <div class="hotel-img">
+            <img src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2020/08/14/5f3604b0d9ada.jpg" alt="">
+        </div>
+        <div class="hotel-info-grid">
+            <div class="hotel-name"><span>목시 바이 메리어트 서울 인사동</span></div>
+            <div class="hotel-rate"><p>9.6점</p></div>
+            <div class="hotel-location">종로구 | 종로3가역 도보 1분</div>
+            <div class="hotel-booking">
+                <a href="#">예약하기</a>
+            </div>
+            <span class="hotel-money">89,700원</span>
+        </div>
+    </div>
+    <div class="content-card hotel-info">
+        <div class="hotel-img">
+            <img src="//image.goodchoice.kr/resize_1000X500x0/affiliate/2020/01/10/5e1816bd8972f.jpg" alt="">
+        </div>
+        <div class="hotel-info-grid">
+            <div class="hotel-name"><span>나인트리 프리미어 호텔 인사동</span></div>
+            <div class="hotel-rate"><p>9.5점</p></div>
+            <div class="hotel-location">종로구 | 안국역 도보 4분</div>
+            <div class="hotel-booking">
+                <a href="#">예약하기</a>
+            </div>
+            <span class="hotel-money">75,000원</span>
+        </div>
+    </div>
+</section>
+<footer>
 
+</footer>
 </body>
 </html>
