@@ -5,11 +5,10 @@
     <title>호텔피디아</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href='{{ url_for("static", filename="style.css") }}' rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light hotelpedia-nav">
@@ -27,7 +26,7 @@
 
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <a class="login-page-link" href="#">로그인하러 가자</a>
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">로그인</button>
         </form>
     </div>
 </nav>
@@ -39,8 +38,8 @@
         </video>
     </div>
     <div class="banner-text">
-        <p>호캉스 여기 다 모였다!</p>
-        <p>비행기 안타도 여기가 외국</p>
+        <h1>호캉스 여기 다 모였다!</h1>
+        <h3>비행기 안타도 여기가 외국</h3>
     </div>
 </div>
 <section class="search">
@@ -320,6 +319,5 @@
 </section>
 <footer>
 
-</footer>
 </body>
 </html>
