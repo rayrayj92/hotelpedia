@@ -5,16 +5,17 @@
     <title>호텔피디아</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href='{{ url_for("static", filename="style.css") }}' rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='{{ url_for("static", filename="register.css") }}' rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <script>
         function signup() {
-        $(document).ready(function (){
+            $(document).ready(function () {
 
-        })
+            })
             $.ajax({
                 type: "POST",
                 url: "/api/signup",
@@ -34,24 +35,7 @@
                 }
             })
         }
-
-
-
-
     </script>
-
-    <style>
-        .register {
-            height : 300px;
-            width: 400px;
-            margin: auto;
-            padding : 10px;
-            border : solid;
-            border-spacing: 5px;
-            border-radius: 10px;
-
-        }
-    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light hotelpedia-nav">
@@ -69,30 +53,35 @@
 
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">로그인</button>
+            <a class="login-page-link" href='/login'>로그인하러가자</a>
         </form>
     </div>
 </nav>
-<section>
-        <div class="register">
-
-                    <input type="text" placeholder="이름" id="name"><br>
-                    <input type="email" placeholder="이메일" id="email"><br>
-                    <input type="tel" placeholder="전화번호" id="phone"><br>
-                    <input type="password" placeholder="비밀번호" id="password">
-                    <hr>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Choose file</label>
-                    </div>
-
-
-
-                    <hr>
-                    <button class="button is-primary" onclick="signup()">회원가입</button>
-
+<section class="register-wrapper">
+    <div class="register">
+        <h3>회원가입</h3>
+        <div>
+            <input type="text" placeholder="이름" id="name">
         </div>
+        <div>
+            <input type="email" style="width: 320px;" placeholder="이메일" id="email">
+            <button class="email-check-btn">중복확인</button>
+        </div>
+        <div>
+            <input type="tel" placeholder="전화번호" id="phone">
+        </div>
+        <div>
+            <input type="password" placeholder="비밀번호" id="password">
+        </div>
+        <div>
+            <input type="password" placeholder="비밀번호 확인" id="passwordConfirm">
+        </div>
+        <div class="img-upload">
+            <input type="file" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">프로필 이미지</label>
+        </div>
+        <button class="register-btn" onclick="signup()">회원가입</button>
+    </div>
 </section>
-
 </body>
 </html>
