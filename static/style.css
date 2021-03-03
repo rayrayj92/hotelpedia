@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
 :root {
     --primary-color: #17A2B8;
     --banner-color: #464444;
 }
 
 * {
-    font-family: 'Cute Font', cursive;
+    font-family: 'Do Hyeon', sans-serif;
 }
 .hotelpedia-logo {
     margin-left: 5rem;
@@ -13,7 +15,6 @@
 .login-page-link {
     margin-right: 5rem;
     color: black;
-    font-weight: 900;
 }
 
 .login-page-link:hover {
@@ -34,7 +35,8 @@
     color: var(--banner-color);
 }
 .banner-video {
-    width:120%;
+    min-width: 100%;
+    min-height: 100%;
 }
 .banner-video-wrapper {
     position: absolute;
@@ -120,7 +122,7 @@
 }
 .hotel-name > span {
     color: black;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 .hotel-rate {
     grid-area: rate;
@@ -154,6 +156,8 @@
     grid-area: price;
     text-align: right;
     font-size: 1.2rem;
+    height: 50px;
+    line-height: 50px;
 }
 .search {
     display: flex;
@@ -170,7 +174,10 @@
     margin: 0 10px;
 }
 .state {
-    width: 300px;
+    width: 200px;
+}
+.city {
+    width: 380px;
 }
 .search-btn {
     width: 150px;

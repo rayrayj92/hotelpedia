@@ -7,8 +7,7 @@
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href='{{ url_for("static", filename="style.css") }}' rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <script defer src="/static/script.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light hotelpedia-nav">
@@ -25,9 +24,7 @@
         <ul class="navbar-nav mr-auto">
 
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">로그인</button>
-        </form>
+        <a class="login-page-link" href='/login'>로그인하러가자</a>
     </div>
 </nav>
 
@@ -44,14 +41,14 @@
 </div>
 <section class="search">
     <div class="search-conditions">
-        <select class="state custom-select">
-            <option>서울</option>
-            <option>부산</option>
-            <option>제주</option>
+        <select class="state custom-select" id="state-select">
+            <option selected>도시를 선택하세요</option>
+            <option value="seoul">서울</option>
+            <option value="busan">부산</option>
+            <option value="jeju">제주</option>
         </select>
-        <select class="city custom-select">
-            <option>강남/역삼/삼성/신사/청담</option>
-            <option>서초/교대</option>
+        <select class="city custom-select" id="city-select">
+            <option selected>그리고 이것도..</option>
         </select>
         <button class="btn btn-outline-light search-btn">검색</button>
     </div>

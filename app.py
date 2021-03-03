@@ -26,8 +26,6 @@ import hashlib
 def homework():
     return render_template('index.html')
 
-<<<<<<< HEAD
-=======
 @app.route('/login')
 def login():
     return render_template('login.html')
@@ -111,9 +109,6 @@ def api_valid():
     except jwt.exceptions.DecodeError:
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
-
-
->>>>>>> d41b17eb0b24ae7cf96050c01820f720087c4c38
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
