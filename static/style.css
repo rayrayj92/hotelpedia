@@ -53,9 +53,6 @@
 .banner-text {
     z-index: 10;
 }
-.hotelpedia-logo {
-    font-weight: 900;
-}
 .weekly-best {
     display: block;
     margin: 0 auto;
@@ -122,7 +119,7 @@
 }
 .hotel-name > span {
     color: black;
-    font-size: 1.3rem;
+    font-size: 21px;
 }
 .hotel-rate {
     grid-area: rate;
@@ -155,7 +152,7 @@
 .hotel-money {
     grid-area: price;
     text-align: right;
-    font-size: 1.2rem;
+    font-size: 19px;
     height: 50px;
     line-height: 50px;
 }

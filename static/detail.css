@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+:root {
+    --primary-color: #17A2B8;
+    --banner-color: #464444;
+}
+
+* {
+    font-family: 'Do Hyeon', sans-serif;
+}
+.hotelpedia-logo {
+    margin-left: 5rem;
+}
+
+.login-page-link {
+    margin-right: 5rem;
+    color: black;
+}
+
+.login-page-link:hover {
+    text-decoration: none;
+    color: black;
+}
+.booking-grid {
+    display: grid;
+    grid-template-areas:
+    'info hotel'
+    'info date'
+    'info price'
+    'info price';
+    grid-template-rows: 30vh 20vh 15vh 5vh;
+    grid-template-columns: 50% 50%;
+    width: 50%;
+    margin: 50px auto;
+}
+.booking-info {
+    grid-area: info;
+}
+.booking-info-wrapper {
+    display: flex;
+    flex-flow: column;
+}
+.booking-info-wrapper > div {
+    margin: 20px 0;
+}
+.booking-info-wrapper > div > input {
+    width: 100px;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: .25rem;
+    padding: 8px 14px 8px 16px;
+    height: 40px;
+}
+.booking-info-phone > input {
+
+}
+.booking-info-wrapper > div > select {
+    width: 150px;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: .25rem;
+    padding: 8px 14px 8px 16px;
+    height: 40px;
+}
+.booking-hotel {
+    grid-area: hotel;
+    position: relative;
+    border-radius: .25rem;
+    background-size: cover;
+}
+.booking-hotel-detail {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    color: white;
+}
+.booking-date {
+    grid-area: date;
+}
+.booking-date > div {
+    margin: 20px 0;
+}
+.booking-date > div > input {
+    width: 200px;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: .25rem;
+    padding: 8px 14px 8px 16px;
+    height: 40px;
+}
+.booking-price {
+    grid-area: price;
+    font-size: 18px;
+}
+.booking-price-tag {
+
+}
+.booking-price-total {
+    font-size: 30px;
+    color: #af3000;
+}
+.booking-price > button {
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: .25rem;
+    padding: .25rem 30px;
+    background: white;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.booking-price > button:hover {
+    color: white;
+    background: var(--primary-color);
+    cursor: pointer;
+}

@@ -26,6 +26,10 @@ import hashlib
 def homework():
     return render_template('index.html')
 
+@app.route('/detail')
+def detail():
+    return render_template('detail.html')
+
 @app.route('/login')
 def login():
     return render_template('login.html')
