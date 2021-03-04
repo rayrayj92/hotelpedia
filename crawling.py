@@ -3,7 +3,8 @@ from bs4 import BeautifulSoup
 
 from pymongo import MongoClient
 
-client = MongoClient('mongodb://13.125.251.48', 27017, username="test", password="test")
+
+client = MongoClient('mongodb://test:test@localhost')
 db = client.dbHotelpedia
 
 headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}

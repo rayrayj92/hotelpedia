@@ -8,6 +8,7 @@ app = Flask(__name__)
 
 from pymongo import MongoClient
 
+
 client = MongoClient('mongodb://test:test@localhost')
 db = client.dbHotelpedia
 
