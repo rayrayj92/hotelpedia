@@ -11,7 +11,15 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script>
+        function sign_out() {
+            $.removeCookie('mytoken', {path: '/'});
+            alert('로그아웃!')
+            window.location.href = "/"
+        }
+        let hotel_detail = '{{ hotel_info }}'
+
         $( document ).ready(function() {
             $('.email-manual').hide();
             let email_select = document.getElementById('email-select');
@@ -30,6 +38,41 @@
             $("#check-in-date").datepicker();
             $("#check-out-date").datepicker();
         });
+
+        function book_complete() {
+
+            let email_address = $('#email-select').val() === '직접입력' ? $('.email-manual').val() : $('#email-select').val()
+
+            console.log(email_address)
+
+            let booker_name = $('#booker-name').val()
+            let booker_phone = $('#booker-phone-first').val().concat($('#booker-phone-second').val(), $('#booker-phone-third').val())
+            let booker_email = $('#booker-email-id').val().concat('@',email_address)
+            let checkin_date_give = $('#check-in-date').val()
+            let checkout_date_give = $('#check-out-date').val()
+            let people_give = $('#people-select').val()
+
+            $.ajax({
+                    type: "POST",
+                    url: `/book_complete`,
+                    data: {
+                        booker_name_give: booker_name,
+                        booker_phone_give: booker_phone,
+                        booker_email_give: booker_email,
+                        hotel_name_give: '{{ hotel_info.name }}',
+                        hotel_location_give: '{{ hotel_info.location }}',
+                        hotel_price_give: '{{ hotel_info.price }}',
+                        hotel_imageUrl_give: '{{ hotel_info.imageUrl }}',
+                        checkin_date_give: checkin_date_give,
+                        checkout_date_give : checkout_date_give,
+                        people_give : people_give
+                    },
+                    success: function (response) {
+                        alert(response["msg"])
+                        window.location.href = "/"
+                    }
+                });
+        }
     </script>
 </head>
 <body>
@@ -47,8 +90,9 @@
         <ul class="navbar-nav mr-auto">
 
         </ul>
-        <img src="/static/hotel1.jpg" width="30" height="30" style="margin-right: 10px; border-radius: 50%" alt="">
-        <a class="login-page-link" href='/'>홍길동님 환영합니다</a>
+        <img src="{{ '.' + token.img }}" width="30" height="30" style="margin-right: 10px; border-radius: 50%" alt="">
+        <a class="login-page-link" href='/'>{{ token.name }}님 환영합니다</a>
+        <a class="btn-logout" href="javascript:sign_out();">로그아웃</a>
     </div>
 </nav>
 <section class="booking-grid">
@@ -58,21 +102,21 @@
             <div>
                 <label>예약자</label>
                 <br>
-                <input type="text" placeholder="예) 홍길동"/>
+                <input type="text" id="booker-name" placeholder="예) 홍길동"/>
             </div>
             <div class="booking-info-phone">
                 <label>휴대폰</label>
                 <br>
-                <input type="tel" placeholder="예) 010"/>
+                <input type="tel" id="booker-phone-first" placeholder="예) 010"/>
                 <span>-</span>
-                <input type="tel"/>
+                <input type="tel" id="booker-phone-second"/>
                 <span>-</span>
-                <input type="tel"/>
+                <input type="tel" id="booker-phone-third"/>
             </div>
             <div>
                 <label>이메일</label>
                 <br>
-                <input type="text"/>
+                <input type="text" id="booker-email-id"/>
                 <span>@</span>
                 <select id="email-select">
                     <option selected>선택하세요</option>
@@ -88,7 +132,7 @@
             <div>
                 <label>숙박 인원</label>
                 <br>
-                <select>
+                <select id="people-select">
                     <option selected>선택하세요</option>
                     <option>1</option>
                     <option>2</option>
@@ -106,13 +150,13 @@
 
     </div>
     <div class="booking-hotel"
-         style="background-image: url('//image.goodchoice.kr/resize_1000X500x0/affiliate/2018/12/13/5c11a683a494b.jpg')">
+         style="background-image: url({{hotel_info.imageUrl}})">
         <div class="booking-hotel-img">
 
         </div>
         <div class="booking-hotel-detail">
             <div>
-                <h3>Hotel</h3>
+                <h3>{{hotel_info.name}}</h3>
             </div>
             <div>
                 <p>스위트룸 더블</p>
@@ -134,13 +178,13 @@
     <div class="booking-price">
         <span class="booking-price-tag">총 결재 금액</span><span>(VAT포함)</span>
         <br>
-        <span class="booking-price-total">380,000원</span>
+        <span class="booking-price-total">{{hotel_info.price}}</span>
         <br>
         <span>*해당 객실가는 세금, 봉사료가 포함된 금액입니다</span>
         <br>
         <span>*결재완료 후 예약자 이름으로 바로 체크인 하시면 됩니다</span>
         <br>
-        <button type="button">결제하기</button>
+        <button type="button" onclick="book_complete()">결제하기</button>
     </div>
 </section>
 </body>

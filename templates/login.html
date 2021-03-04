@@ -29,20 +29,49 @@
         <ul class="navbar-nav mr-auto">
 
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <a class="login-page-link" href='/register'>회원가입</a>
-        </form>
+        {% if token %}
+        <img src="{{ token.img }}" width="30" height="30" style="margin-right: 10px; border-radius: 50%" alt="">
+        <a class="login-page-link" href='/'>{{ token.name }}님 환영합니다</a>
+        <a class="btn-logout" href="javascript:sign_out();">로그아웃</a>
+        {% else %}
+        <a class="login-page-link" style="margin-right: 5rem;" href='/register'>회원가입</a>
+        {% endif %}
     </div>
 </nav>
    <script>
+        function sign_out() {
+            $.removeCookie('mytoken', {path: '/'});
+            alert('로그아웃!')
+            window.location.href = "/"
+        }
+
+        function email_confirm(asValue) {
+           var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
+           return regExp.test(asValue);
+       }
+
+
         {% if msg %}
             alert("{{ msg }}")
         {% endif %}
         function signin() {
+            let email = $('#email').val()
+            let password = $('#password').val()
+
+            if (email =="") {
+                alert ("이메일을 입력해주세요")
+                return
+            }
+            if (!email_confirm(email)) {
+                alert("유효한 이메일 형식을 입력해주세요!")
+                return;
+            }
+
             $.ajax({
                 type: "POST",
                 url: "/api/signin",
-                data: {email_give: $('#email').val(), password_give: $('#password').val()},
+                data: {email_give: email,
+                       password_give: password},
                 success: function (response) {
                     if (response['result'] == 'success') {
                         $.cookie('mytoken', response['token']);

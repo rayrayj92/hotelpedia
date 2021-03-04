@@ -13,13 +13,26 @@
 }
 
 .login-page-link {
-    margin-right: 5rem;
+    margin-right: .5rem;
     color: black;
 }
 
 .login-page-link:hover {
     text-decoration: none;
     color: black;
+}
+.btn-logout {
+    color: orangered;
+    border: 1px solid orangered;
+    border-radius: .25rem;
+    padding: .25rem 10px;
+    margin-right: 5rem;
+}
+
+.btn-logout:hover {
+    color: white;
+    background: orangered;
+    text-decoration: none;
 }
 .register-wrapper {
     width: 50%;
@@ -73,4 +86,10 @@
     color: white;
     background: var(--primary-color);
     cursor: pointer;
+}
+.login-link {
+    color: var(--primary-color);
+}
+.login-link:hover {
+    color: var(--primary-color);
 }
