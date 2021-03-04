@@ -59,7 +59,7 @@
                                             <div class="hotel-info-grid">
                                                 <div class="hotel-name"><span>${name}</span></div>
                                                 <div class="hotel-rate"><p>${rate}점</p></div>
-                                                <div class="hotel-location">${location}</div>
+                                                <div class="hotel-location"><span>${location}</span></div>
                                                 <div class="hotel-booking">
                                                     <a href="/detail/${id}">예약하기</a>
                                                 </div>
@@ -141,7 +141,7 @@
                     <div class="hotel-info-grid">
                         <div class="hotel-name"><span>{{ hotel.name }}</span></div>
                         <div class="hotel-rate"><p>{{ hotel.rate }}점</p></div>
-                        <div class="hotel-location">{{ hotel.location }}</div>
+                        <div class="hotel-location"><span>{{ hotel.location }}</span></div>
                         <div class="hotel-booking">
                             <a href="/detail/{{ hotel._id }}">예약하기</a>
                         </div>

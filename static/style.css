@@ -146,6 +146,7 @@
 }
 .hotel-location {
     grid-area: location;
+    height: 25px;
 }
 .hotel-booking {
     grid-area: btn;

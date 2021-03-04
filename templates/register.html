@@ -81,14 +81,13 @@
     });
 
     $(document).ready(function () {
-        bsCustomFileInput.init()
-
+        bsCustomFileInput.init();
     })
 
     function sign_out() {
         $.removeCookie('mytoken', {path: '/'});
-        alert('로그아웃!')
-        window.location.href = "/"
+        alert('로그아웃!');
+        window.location.href = "/";
     }
 
     function email_confirm(asValue) {
@@ -109,17 +108,19 @@
     // safe_color : #48c774;
     // danger_color : #f14668;
     function confirm() {
-        let email = $("#email").val()
+        let email = $("#email").val();
+
         if (email == "") {
             $('#help_id').text("이메일을 입력해주세요").css('color', '#f14668');
             $('#email').focus()
             return;
         }
         if (!email_confirm(email)) {
-            $('#help-id').text("이메일 형식으로 입력해 주세요").css('color', '#f14668');
+            $('#help_id').text("이메일 형식으로 입력해 주세요").css('color', '#f14668');
             return;
         }
-        $("#help_id").addClass("is-loading")
+
+        $("#help_id").addClass("is-loading");
 
         $.ajax({
             type: "POST",
@@ -128,45 +129,51 @@
                 email_give: email
             },
             success: function (response) {
-
                 if (response["exists"]) {
                     $("#help_id").text("이미 존재하는 이메일입니다.").css('color', '#f14668');
-                    $("#email").focus()
+                    $("#email").focus();
                 } else {
                     $("#help_id").text("사용할 수 있는 이메일입니다.").css('color', '#48c774');
                 }
-                $("#help_id").removeClass("is-loading")
+
+                $("#help_id").removeClass("is-loading");
             }
         });
     }
 
 
     function signup() {
-        let email = $("#email").val()
-        let name = $("#name").val()
-        let phone = $("#phone").val()
-        let password = $("#password").val()
-        let password2 = $("#passwordconfirm").val()
+        let email = $("#email").val();
+        let name = $("#name").val();
+        let phone = $("#phone").val();
+        let password = $("#password").val();
+        let password2 = $("#passwordconfirm").val();
 
         // safe_color : #48c774;
         // danger_color : #f14668;
         if (name === "") {
             $('#help_name').text("이름을 입력해주세요").css('color', '#f14668');
-            $('#name').focus()
+            $('#name').focus();
             return
         } else {
             $('#help_name').text("");
         }
+
         if (email == "") {
             $('#help_id').text("이메일을 입력해주세요").css('color', '#f14668');
-            $('#email').focus()
+            $('#email').focus();
             return;
         } else {
             $('#help_id').text("");
         }
+
         if (phone === "") {
             $('#help_phone').text("휴대폰번호를 입력해주세요").css('color', '#f14668');
-            $('#phone').focus()
+            $('#phone').focus();
+            return
+        } else if (!phone_confirm(phone)) {
+            $('#help_phone').text("휴대폰번호의 형식을 확인해주세요.").css('color', '#f14668');
+            $('#phone').focus();
             return
         } else {
             $('#help_phone').text("");
@@ -175,46 +182,49 @@
 
         if (password == "") {
             $("#help_password").text("비밀번호를 입력해주세요.").css('color', '#f14668');
-            $("#password").focus()
+            $("#password").focus();
             return;
         } else if (!password_confirm(password)) {
             $("#help_password").text("비밀번호의 형식을 확인해주세요. 영문과 숫자 필수 포함, 특수문자(!@#$%^&*) 사용가능 ").css('color', '#f14668');
-            $("#password").focus()
+            $("#password").focus();
             return
         } else {
             $("#help_password").text("사용할 수 있는 비밀번호입니다.").css('color', '#48c774');
         }
+
         if (password2 === "") {
             $('#help_password2').text("다시한번 입력해주세요").css('color', '#f14668');
-            $('#password2').focus()
+            $('#password2').focus();
             return
         }
+
         if (password2 == "") {
             $("#help_passwordd2").text("비밀번호를 입력해주세요.").css('color', '#f14668');
             return;
         } else if (password2 != password) {
             $("#help_password2").text("비밀번호가 일치하지 않습니다.").css('color', '#f14668');
-            $("#passwordconfirm").focus()
+            $("#passwordconfirm").focus();
             return;
         } else {
             $("#help_password2").text("비밀번호가 일치합니다.").css('color', '#48c774');
         }
+
         if ($('#file')[0].files.length === 0) {
             $("#help_file").text("프로필사진을 업로드 해주세요").css('color', '#f14668');
-            $("#passwordconfirm").focus()
+            $("#passwordconfirm").focus();
             return
         }
 
-        let file = $('#file')[0].files[0]
+        let file = $('#file')[0].files[0];
 
-        let form_data = new FormData()
+        let form_data = new FormData();
 
-        form_data.append("email_give", email)
-        form_data.append("name_give", name)
-        form_data.append("phone_give", phone)
-        form_data.append("password_give", password)
-        form_data.append("password2_give", password)
-        form_data.append("file_give", file)
+        form_data.append("email_give", email);
+        form_data.append("name_give", name);
+        form_data.append("phone_give", phone);
+        form_data.append("password_give", password);
+        form_data.append("password2_give", password);
+        form_data.append("file_give", file);
 
         $.ajax({
             type: "POST",
@@ -225,10 +235,10 @@
             processData: false,
             success: function (response) {
                 if (response['result'] == 'success') {
-                    alert('회원가입이 완료되었습니다.')
-                    window.location.href = '/login'
+                    alert('회원가입이 완료되었습니다.');
+                    window.location.href = '/login';
                 } else {
-                    alert(response['msg'])
+                    alert(response['msg']);
                 }
             }
         })

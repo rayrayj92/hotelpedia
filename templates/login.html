@@ -88,8 +88,12 @@
     <section class="login-wrapper">
         <div class="login">
             <h3>로그인</h3>
-            <input type="email" placeholder="이메일" id="email"><br>
-            <input type="password" placeholder="비밀번호" id="password"><br>
+            <div class="login-input">
+                <input type="email" placeholder="이메일" id="email">
+            </div>
+            <div class="login-input">
+                <input type="password" placeholder="비밀번호" id="password">
+            </div>
             <button class="login-btn" onclick="signin()">로그인</button>
             <span>or</span>
             <a class="register" href="/register">계정 만들기</a>

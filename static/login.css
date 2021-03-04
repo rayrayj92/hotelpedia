@@ -43,7 +43,10 @@
     justify-content: center;
     align-items: center;
 }
-.login > input {
+.login-input {
+    margin: 10px 0;
+}
+.login-input > input {
     width: 400px;
     border: 1px solid rgba(0,0,0,0.08);
     border-radius: .25rem;
