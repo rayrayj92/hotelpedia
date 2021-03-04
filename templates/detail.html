@@ -18,14 +18,15 @@
             alert('로그아웃!')
             window.location.href = "/"
         }
+
         let hotel_detail = '{{ hotel_info }}'
 
-        $( document ).ready(function() {
+        $(document).ready(function () {
             $('.email-manual').hide();
             let email_select = document.getElementById('email-select');
             email_select.addEventListener('change', function () {
                 let selected = this.value;
-                if(selected === "직접입력") {
+                if (selected === "직접입력") {
                     $('.email-manual').show();
                 } else {
                     $('.email-manual').val('');
@@ -39,6 +40,16 @@
             $("#check-out-date").datepicker();
         });
 
+        function phone_confirm(asValue) {
+            let regExp = /^[0-9]{2,3}[0-9]{3,4}[0-9]{4}$/;
+            return regExp.test(asValue);
+        }
+
+        function email_confirm(asValue) {
+            let regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
+            return regExp.test(asValue);
+        }
+
         function book_complete() {
 
             let email_address = $('#email-select').val() === '직접입력' ? $('.email-manual').val() : $('#email-select').val()
@@ -47,31 +58,64 @@
 
             let booker_name = $('#booker-name').val()
             let booker_phone = $('#booker-phone-first').val().concat($('#booker-phone-second').val(), $('#booker-phone-third').val())
-            let booker_email = $('#booker-email-id').val().concat('@',email_address)
+            let booker_email = $('#booker-email-id').val().concat('@', email_address)
             let checkin_date_give = $('#check-in-date').val()
             let checkout_date_give = $('#check-out-date').val()
             let people_give = $('#people-select').val()
 
+            if (booker_name === "") {
+                alert("예약자 이름을 입력해주세요!")
+                return
+            }
+            if (booker_phone === "") {
+                alert("예약자 전화번호를 입력해주세요!")
+                return
+            }
+            if (!phone_confirm(booker_phone)) {
+                alert("유효한 전화번호형식을 입력해주세요!")
+                return
+            }
+            if (booker_email === "") {
+                alert("예약자 이메일을 입력해주세요!")
+                return
+            }
+            if (!email_confirm(booker_email)) {
+                alert("유효한 이메일형식을 입력해주세요!")
+                return
+            }
+            if (people_give === "") {
+                alert("숙박 인원을 입력해주세요!")
+                return
+            }
+            if (checkin_date_give === "") {
+                alert("체크인 날짜를 입력해주세요!")
+                return
+            }
+            if (checkout_date_give === "") {
+                alert("체크아웃 날짜를 입력해주세요!")
+                return
+            }
+
             $.ajax({
-                    type: "POST",
-                    url: `/book_complete`,
-                    data: {
-                        booker_name_give: booker_name,
-                        booker_phone_give: booker_phone,
-                        booker_email_give: booker_email,
-                        hotel_name_give: '{{ hotel_info.name }}',
-                        hotel_location_give: '{{ hotel_info.location }}',
-                        hotel_price_give: '{{ hotel_info.price }}',
-                        hotel_imageUrl_give: '{{ hotel_info.imageUrl }}',
-                        checkin_date_give: checkin_date_give,
-                        checkout_date_give : checkout_date_give,
-                        people_give : people_give
-                    },
-                    success: function (response) {
-                        alert(response["msg"])
-                        window.location.href = "/"
-                    }
-                });
+                type: "POST",
+                url: `/book_complete`,
+                data: {
+                    booker_name_give: booker_name,
+                    booker_phone_give: booker_phone,
+                    booker_email_give: booker_email,
+                    hotel_name_give: '{{ hotel_info.name }}',
+                    hotel_location_give: '{{ hotel_info.location }}',
+                    hotel_price_give: '{{ hotel_info.price }}',
+                    hotel_imageUrl_give: '{{ hotel_info.imageUrl }}',
+                    checkin_date_give: checkin_date_give,
+                    checkout_date_give: checkout_date_give,
+                    people_give: people_give
+                },
+                success: function (response) {
+                    alert(response["msg"])
+                    window.location.href = "/"
+                }
+            });
         }
     </script>
 </head>
@@ -150,13 +194,13 @@
 
     </div>
     <div class="booking-hotel"
-         style="background-image: url({{hotel_info.imageUrl}})">
+         style="background-image: url({{ hotel_info.imageUrl }})">
         <div class="booking-hotel-img">
 
         </div>
         <div class="booking-hotel-detail">
             <div>
-                <h3>{{hotel_info.name}}</h3>
+                <h3>{{ hotel_info.name }}</h3>
             </div>
             <div>
                 <p>스위트룸 더블</p>
@@ -178,7 +222,7 @@
     <div class="booking-price">
         <span class="booking-price-tag">총 결재 금액</span><span>(VAT포함)</span>
         <br>
-        <span class="booking-price-total">{{hotel_info.price}}</span>
+        <span class="booking-price-total">{{ hotel_info.price }}</span>
         <br>
         <span>*해당 객실가는 세금, 봉사료가 포함된 금액입니다</span>
         <br>

@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 from pymongo import MongoClient
 
-client = MongoClient('mongodb://13.125.251.48', 27017, username="test", password="test")
+client = MongoClient('mongodb://test:test@localhost')
 db = client.dbHotelpedia
 
 from bson.objectid import ObjectId
@@ -30,36 +30,50 @@ import hashlib
 ## HTML 화면 보여주기
 @app.route('/')
 def main():
-    hotels = objectIdDecoder(list(db.hotels.find({'state': '서울', 'city': '강남'})))
+    try:
+        hotels = objectIdDecoder(list(db.hotels.find({'state': '서울', 'city': '강남'})))
+        print('test11')
+        token_receive = request.cookies.get('mytoken')
+        print('test22')
+        if token_receive:
+            print(token_receive)
+            payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+            print('test2')
+            return render_template("index.html", hotels=hotels, token=payload)
 
-    token_receive = request.cookies.get('mytoken')
-
-    if token_receive:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        return render_template("index.html", hotels=hotels, token=payload)
-
-    return render_template("index.html", hotels=hotels, token=token_receive)
+        return render_template("index.html", hotels=hotels, token=token_receive)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        token_receive = None
+        return render_template("index.html", hotels=hotels, token=token_receive)
 
 @app.route('/login')
 def login():
     token_receive = request.cookies.get('mytoken')
+    try:
+        if token_receive:
+            payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+            return render_template('login.html', token=payload)
 
-    if token_receive:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        return render_template('login.html', token=payload)
-
-    return render_template('login.html', token=token_receive)
+        return render_template('login.html', token=token_receive)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        token_receive = None
+        return render_template('login.html', token=token_receive)
 
 
 @app.route('/register')
 def register():
     token_receive = request.cookies.get('mytoken')
 
-    if token_receive:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        return render_template('register.html', token=payload)
+    try:
+        if token_receive:
+            payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+            return render_template('register.html', token=payload)
 
-    return render_template('register.html', token=token_receive)
+        return render_template('register.html', token=token_receive)
+
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        token_receive = None
+        return render_template('register.html', token=token_receive)
 
 @app.route('/signup/confirm', methods=['POST'])
 def confirm():
@@ -184,7 +198,7 @@ def book_hotel(id):
 
         return render_template("detail.html", hotel_info=hotel_info, token=payload)
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("/"))
+        return redirect(url_for("login"))
 
 
 # [예약 완료 db 삽입 API]

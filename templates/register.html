@@ -8,11 +8,11 @@
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href='{{ url_for("static", filename="register.css") }}' rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="p[reconnect" href="https://fonts.gstatic.com">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-   </head>
+    <link href='{{ url_for("static", filename="register.css") }}' rel="stylesheet">
+</head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light hotelpedia-nav">
     <a class="navbar-brand hotelpedia-logo" href="/">
@@ -29,11 +29,11 @@
 
         </ul>
         {% if token %}
-        <img src="{{ token.img }}" width="30" height="30" style="margin-right: 10px; border-radius: 50%" alt="">
-        <a class="login-page-link" href='/'>{{ token.name }}님 환영합니다</a>
-        <a class="btn-logout" href="javascript:sign_out();">로그아웃</a>
+            <img src="{{ token.img }}" width="30" height="30" style="margin-right: 10px; border-radius: 50%" alt="">
+            <a class="login-page-link" href='/'>{{ token.name }}님 환영합니다</a>
+            <a class="btn-logout" href="javascript:sign_out();">로그아웃</a>
         {% else %}
-        <a class="login-page-link" style="margin-right: 5rem;" href='/login'>로그인하러가자</a>
+            <a class="login-page-link" style="margin-right: 5rem;" href='/login'>로그인하러가자</a>
         {% endif %}
     </div>
 </nav>
@@ -42,23 +42,33 @@
         <h3>회원가입</h3>
         <div>
             <input type="text" placeholder="이름" id="name">
+            <br>
+            <span id="help_name" class="help"></span>
         </div>
         <div>
-            <input type="email" style="width: 320px;" placeholder="이메일" id="email">
+            <input type="email" style="width: 320px;" placeholder="이메일 형식에 맞춰 입력해주세요" id="email">
             <button class="email-check-btn" onclick="confirm()">중복확인</button>
+            <span id="help_id" class="help"></span>
         </div>
         <div>
             <input type="tel" placeholder="전화번호 '-' 없이 입력해주세요" id="phone">
+            <span id="help_phone" class="help"></span>
         </div>
         <div>
-            <input type="password" placeholder="비밀번호" id="password">
+            <input type="password" placeholder="영문과 숫자 조합의 8-20자의 비밀번호를 설정해주세요." id="password">
+            <span id="help_password" class="help"></span>
         </div>
         <div>
             <input type="password" placeholder="비밀번호 확인" id="passwordconfirm">
+            <span id="help_password2" class="help"></span>
         </div>
         <div class="img-upload custom-file">
-            <input type="file" class="custom-file-input" id="file">
+            <input type="file" class="custom-file-input" id="file" accept="image/*">
             <label class="custom-file-label">프로필 이미지</label>
+        </div>
+        <div>
+            <!--프로필사진#-->
+            <span id="help_file" class="help"></span>
         </div>
         <button class="register-btn" onclick="signup()">회원가입</button>
         <span>or</span>
@@ -66,130 +76,163 @@
     </div>
 </section>
 <script>
-       $(document).ready(function () {
-            bsCustomFileInput.init()
-        })
-       function sign_out() {
-            $.removeCookie('mytoken', {path: '/'});
-            alert('로그아웃!')
-            window.location.href = "/"
-        }
-        function email_confirm(asValue) {
-            let regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
+    $("#file").on("change", function () {
+        $('#help_file').text("");
+    });
+
+    $(document).ready(function () {
+        bsCustomFileInput.init()
+
+    })
+
+    function sign_out() {
+        $.removeCookie('mytoken', {path: '/'});
+        alert('로그아웃!')
+        window.location.href = "/"
+    }
+
+    function email_confirm(asValue) {
+        let regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
         return regExp.test(asValue);
+    }
+
+    function password_confirm(asValue) {
+        let regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
+        return regExp.test(asValue);
+    }
+
+    function phone_confirm(asValue) {
+        let regExp = /^[0-9]{2,3}[0-9]{3,4}[0-9]{4}$/;
+        return regExp.test(asValue);
+    }
+
+    // safe_color : #48c774;
+    // danger_color : #f14668;
+    function confirm() {
+        let email = $("#email").val()
+        if (email == "") {
+            $('#help_id').text("이메일을 입력해주세요").css('color', '#f14668');
+            $('#email').focus()
+            return;
         }
-
-        function password_confirm(asValue) {
-            let regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
-            return regExp.test(asValue);
+        if (!email_confirm(email)) {
+            $('#help-id').text("이메일 형식으로 입력해 주세요").css('color', '#f14668');
+            return;
         }
+        $("#help_id").addClass("is-loading")
 
-        function phone_confirm(asValue) {
-            let regExp = /^[0-9]{2,3}[0-9]{3,4}[0-9]{4}$/;
-            return regExp.test(asValue);
-        }
+        $.ajax({
+            type: "POST",
+            url: "/signup/confirm",
+            data: {
+                email_give: email
+            },
+            success: function (response) {
 
-
-        function confirm() {
-            let email = $("#email").val()
-            if (email == "") {
-                alert('이메일을  입력해주세요!')
-                return;
-            }
-            if (!email_confirm(email)) {
-                alert("유효한 이메일 형식을 입력해주세요!")
-                return;
-            }
-
-            $.ajax({
-                type: "POST",
-                url: "/signup/confirm",
-                data: {
-                    email_give: email
-                },
-                success: function (response) {
-
-                    if (response["exists"]) {
-                        alert("이미 존재하는 이메일입니다!")
-                    } else {
-                        alert("사용할 수 있는 이메일입니다!")
-                    }
+                if (response["exists"]) {
+                    $("#help_id").text("이미 존재하는 이메일입니다.").css('color', '#f14668');
+                    $("#email").focus()
+                } else {
+                    $("#help_id").text("사용할 수 있는 이메일입니다.").css('color', '#48c774');
                 }
-            })
+                $("#help_id").removeClass("is-loading")
+            }
+        });
+    }
+
+
+    function signup() {
+        let email = $("#email").val()
+        let name = $("#name").val()
+        let phone = $("#phone").val()
+        let password = $("#password").val()
+        let password2 = $("#passwordconfirm").val()
+
+        // safe_color : #48c774;
+        // danger_color : #f14668;
+        if (name === "") {
+            $('#help_name').text("이름을 입력해주세요").css('color', '#f14668');
+            $('#name').focus()
+            return
+        } else {
+            $('#help_name').text("");
+        }
+        if (email == "") {
+            $('#help_id').text("이메일을 입력해주세요").css('color', '#f14668');
+            $('#email').focus()
+            return;
+        } else {
+            $('#help_id').text("");
+        }
+        if (phone === "") {
+            $('#help_phone').text("휴대폰번호를 입력해주세요").css('color', '#f14668');
+            $('#phone').focus()
+            return
+        } else {
+            $('#help_phone').text("");
+
         }
 
+        if (password == "") {
+            $("#help_password").text("비밀번호를 입력해주세요.").css('color', '#f14668');
+            $("#password").focus()
+            return;
+        } else if (!password_confirm(password)) {
+            $("#help_password").text("비밀번호의 형식을 확인해주세요. 영문과 숫자 필수 포함, 특수문자(!@#$%^&*) 사용가능 ").css('color', '#f14668');
+            $("#password").focus()
+            return
+        } else {
+            $("#help_password").text("사용할 수 있는 비밀번호입니다.").css('color', '#48c774');
+        }
+        if (password2 === "") {
+            $('#help_password2').text("다시한번 입력해주세요").css('color', '#f14668');
+            $('#password2').focus()
+            return
+        }
+        if (password2 == "") {
+            $("#help_passwordd2").text("비밀번호를 입력해주세요.").css('color', '#f14668');
+            return;
+        } else if (password2 != password) {
+            $("#help_password2").text("비밀번호가 일치하지 않습니다.").css('color', '#f14668');
+            $("#passwordconfirm").focus()
+            return;
+        } else {
+            $("#help_password2").text("비밀번호가 일치합니다.").css('color', '#48c774');
+        }
+        if ($('#file')[0].files.length === 0) {
+            $("#help_file").text("프로필사진을 업로드 해주세요").css('color', '#f14668');
+            $("#passwordconfirm").focus()
+            return
+        }
 
-        function signup() {
-            let email = $("#email").val()
-            let name = $("#name").val()
-            let phone = $("#phone").val()
-            let password = $("#password").val()
-            let password2 = $("#passwordconfirm").val()
+        let file = $('#file')[0].files[0]
 
+        let form_data = new FormData()
 
-            if (name === "") {
-                alert("이름을 입력해주세요!")
-                return
-            }
-            if (email === "") {
-                alert("이메일을 입력해주세요!")
-                return
-            }
-            if (phone === "") {
-                alert("전화번호를 입력해주세요!")
-                return
-            }
-            if (!phone_confirm(phone)) {
-                alert("유효한 전화번호형식을 입력해주세요!")
-                return
-            }
+        form_data.append("email_give", email)
+        form_data.append("name_give", name)
+        form_data.append("phone_give", phone)
+        form_data.append("password_give", password)
+        form_data.append("password2_give", password)
+        form_data.append("file_give", file)
 
-            if (password === "" || password2 === "") {
-                alert("비밀번호칸을 모두 입력해주세요!")
-                return
-            }
-            if (password !== password2) {
-                alert("비밀번호가 일치하지않습니다!")
-                return
-            }
-            if (!password_confirm(password) || !password_confirm(password2)) {
-                alert("비밀번호 형식을 확인해주세요!")
-                return
-            }
-
-            if($('#file')[0].files.length === 0) {
-                alert("프로필 사진을 업로드 해주세요!");
-                return
-            }
-
-            let file = $('#file')[0].files[0]
-
-            let form_data = new FormData()
-
-            form_data.append("email_give", email)
-            form_data.append("name_give", name)
-            form_data.append("phone_give", phone)
-            form_data.append("password_give", password)
-            form_data.append("password2_give", password)
-            form_data.append("file_give", file)
-
-            $.ajax({
-                type: "POST",
-                url: "/api/signup",
-                data: form_data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    if (response['result'] == 'success') {
-                        alert('회원가입이 완료되었습니다.')
-                        window.location.href = '/login'
-                    } else {
-                        alert(response['msg'])
-                    }
+        $.ajax({
+            type: "POST",
+            url: "/api/signup",
+            data: form_data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response['result'] == 'success') {
+                    alert('회원가입이 완료되었습니다.')
+                    window.location.href = '/login'
+                } else {
+                    alert(response['msg'])
                 }
-            })
-        }
-    </script>
+            }
+        })
+    }
+</script>
 </body>
 </html>

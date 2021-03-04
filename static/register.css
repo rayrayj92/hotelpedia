@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@100&display=swap');
 
 :root {
     --primary-color: #17A2B8;
@@ -8,6 +8,7 @@
 * {
     font-family: 'Do Hyeon', sans-serif;
 }
+
 .hotelpedia-logo {
     margin-left: 5rem;
 }
@@ -21,6 +22,7 @@
     text-decoration: none;
     color: black;
 }
+
 .btn-logout {
     color: orangered;
     border: 1px solid orangered;
@@ -34,27 +36,37 @@
     background: orangered;
     text-decoration: none;
 }
+
 .register-wrapper {
     width: 50%;
     margin: 50px auto;
 }
+
 .register {
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
 }
+
 .register > div > input {
     width: 100%;
-    border: 1px solid rgba(0,0,0,0.08);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: .25rem;
     padding: 8px 14px 8px 16px;
     height: 40px;
 }
+
 .register > div {
     width: 400px;
     margin: 10px 0;
 }
+
+.register > div > span {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+}
+
 .email-check-btn {
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
@@ -62,17 +74,19 @@
     padding: .25rem 10px;
     background: white;
     cursor: pointer;
-    margin-top: 10px;
 }
+
 .email-check-btn:hover {
     color: white;
     background: var(--primary-color);
     cursor: pointer;
 }
+
 .img-upload {
     position: relative;
     width: 400px;
 }
+
 .register-btn {
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
@@ -82,14 +96,21 @@
     cursor: pointer;
     margin-top: 10px;
 }
+
 .register-btn:hover {
     color: white;
     background: var(--primary-color);
     cursor: pointer;
 }
+
 .login-link {
     color: var(--primary-color);
 }
+
 .login-link:hover {
     color: var(--primary-color);
+}
+
+.help {
+    font-size: 15px;
 }
