@@ -8,6 +8,7 @@
 ### :mage: 맴버구성
 + :lipstick: 정찬엽
   + 웹사이트 Mockup 구현
+     + 바닐라 JS 및 JQuery로 DOM 조작 -> 랜딩 페이지 검색 조건(바닐라 JS) 및 예약 페이지 이메일 '직접입력' 구현(JQuery)
   + JWT 기반 페이지 권한 구현
   + DevOps 관리 (Git, AWS EC2)
 + :computer: 채진욱
@@ -20,3 +21,4 @@
 
 ### :link: 라이브
 http://hotelpedia.shop/
+
