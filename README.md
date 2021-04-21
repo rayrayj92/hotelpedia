@@ -19,9 +19,6 @@
   + 회원가입 + 로그인 구현 
   + 영상제작
 
-### :link: 라이브
-http://hotelpedia.shop/
-
-### :clapper: 영상
+### :clapper: 데모영상
 https://www.youtube.com/watch?v=MRSkVF1RBcw
 
